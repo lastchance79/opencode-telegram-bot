@@ -408,6 +408,23 @@ describe("synthesizeSpeech (ElevenLabs)", () => {
     );
   });
 
+  it("uses the ElevenLabs model fallback when model is empty", async () => {
+    mockTts.model = "";
+    const fetchSpy = vi.spyOn(globalThis, "fetch").mockResolvedValue(
+      new Response(Uint8Array.from([1]), {
+        status: 200,
+        headers: { "Content-Type": "audio/mpeg" },
+      }),
+    );
+
+    await synthesizeSpeech("Hello world");
+
+    expect(JSON.parse(String(fetchSpy.mock.calls[0][1]?.body))).toEqual({
+      text: "Hello world",
+      model_id: "eleven_flash_v2_5",
+    });
+  });
+
   it("throws on non-OK HTTP response", async () => {
     vi.spyOn(globalThis, "fetch").mockResolvedValue(
       new Response("Voice not found", {

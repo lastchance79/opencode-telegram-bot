@@ -307,12 +307,14 @@ describe("config boolean env parsing", () => {
     expect(config.tts.voice).toBe("nPczCjzI2devNBz1zQrb");
   });
 
-  it("uses an ElevenLabs voice ID default for ElevenLabs TTS", async () => {
+  it("uses ElevenLabs defaults for ElevenLabs TTS", async () => {
     vi.stubEnv("TTS_PROVIDER", "elevenlabs");
+    vi.stubEnv("TTS_MODEL", "");
     vi.stubEnv("TTS_VOICE", "");
 
     const config = await loadConfig();
 
+    expect(config.tts.model).toBe("eleven_flash_v2_5");
     expect(config.tts.voice).toBe("21m00Tcm4TlvDq8ikWAM");
   });
 });

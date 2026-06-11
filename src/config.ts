@@ -208,11 +208,13 @@ export const config = {
         : provider === "elevenlabs"
           ? "21m00Tcm4TlvDq8ikWAM"
           : "alloy";
+    const defaultModel =
+      provider === "elevenlabs" ? "eleven_flash_v2_5" : "gpt-4o-mini-tts";
     return {
       apiUrl: getEnvVar("TTS_API_URL", false),
       apiKey: getEnvVar("TTS_API_KEY", false),
       provider,
-      model: getEnvVar("TTS_MODEL", false) || "gpt-4o-mini-tts",
+      model: getEnvVar("TTS_MODEL", false) || defaultModel,
       voice: getEnvVar("TTS_VOICE", false) || defaultVoice,
     };
   })(),
