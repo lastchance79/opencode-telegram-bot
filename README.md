@@ -23,6 +23,8 @@ Languages: English (`en`), العربية (`ar`), Deutsch (`de`), Español (`es`
   <img src="assets/screencast.gif" width="45%" alt="OpenCode Telegram Bot screencast" />
 </p>
 
+> I use [boardown](https://github.com/grinev/boardown), my open-source Markdown-based task board, to plan and track this project. It stores tasks in plain `.md` files and can be used as a VS Code extension or a desktop app.
+
 ## Features
 
 - **Remote coding** — send prompts to OpenCode from anywhere, receive complete results with code sent as files
